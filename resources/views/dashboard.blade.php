@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            @role('editor')
-                Editor   {{ __('Dashboard') }}
+            @role('admin')
+                Admin {{ __('Dashboard') }}
             @endrole
         </h2>
     </x-slot>
