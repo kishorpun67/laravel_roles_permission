@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PostController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,15 +20,14 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::group(['middleware'=>['auth']], function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    Route::group(['middleware'=>['role:editor']], function () {
-        Route::get('/role', function() {
-
-            return 'editor';
-        });
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=>['role:author']],function() {
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+        Route::resource('posts', PostController::class);
     });
 });
 

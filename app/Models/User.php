@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\HasPermissionsTrait;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -43,4 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function post()
+    {
+       return $this->belongsToMany(Post::class);
+    }
 }

@@ -2,7 +2,10 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             @role('admin')
-                Admin {{ __('Dashboard') }}
+                <a href="{{route('admin.dashboard')}}">Admin {{ __('Dashboard') }}</a>
+            @endrole
+            @role('author')
+                <a href="{{route('admin.dashboard')}}">Author {{ __('Dashboard') }}</a>
             @endrole
         </h2>
     </x-slot>

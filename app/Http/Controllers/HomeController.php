@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function dashboard()
     {
         $user = auth()->user();
-        // $role = Role::where('slug', 'admin')->first();
+        // $role = Role::where('slug', 'author')->first();
         // $user->roles()->attach($role);
         // return $user->can('editor');
         // return $user->hasRole('editor');

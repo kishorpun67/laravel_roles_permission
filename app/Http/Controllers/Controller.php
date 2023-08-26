@@ -8,5 +8,13 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use  ValidatesRequests;
+    use AuthorizesRequests {authorize as protected baseAuthorize;}
+
+    public function authorize($ability, $arguments= array()) {
+        if(auth()->check()) {
+            \Auth::shouldUse('web');
+        }
+        // $this->baseAuthorize($ability, $arguments);
+    }
 }
